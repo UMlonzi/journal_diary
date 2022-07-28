@@ -18,7 +18,8 @@ export default function HomeScreen() {
       if (permission.status === "granted") {
         await Audio.setAudioModeAsync({
           allowsRecordingIOS: true,
-          playsInSilentModeIOS: true
+          playsInSilentModeIOS: true,
+          playsOutLoudModeIOS: true
         });
         
         const { recording } = await Audio.Recording.createAsync(
@@ -65,7 +66,7 @@ export default function HomeScreen() {
           <Text style={styles.fill}>Recording {index + 1} - {recordingLine.duration}</Text>
           <Button style={styles.button} onPress={() => recordingLine.sound.replayAsync()} title="Play"></Button>
           <Button style={styles.button} onPress={() => Sharing.shareAsync(recordingLine.file)} title="Share"></Button>
-          <Button style={styles.button} onPress={() => recordingLine.sound.DeleteAsync()} title="Delete"></Button>
+          
         </View>
       );
     });
